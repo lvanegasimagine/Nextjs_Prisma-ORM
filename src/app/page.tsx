@@ -30,12 +30,15 @@ function HomePage() {
                 Content
               </th>
               <th scope="col" className="px-6 py-3">
+                Create Date
+              </th>
+              <th scope="col" className="px-6 py-3">
                 <span className="sr-only">Edit</span>
               </th>
             </tr>
           </thead>
           <tbody>
-            <NotesList notes={notes} showForm={showForm} setShowForm={setShowForm}/>
+            <NotesList notes={notes} showForm={showForm} setShowForm={setShowForm} />
           </tbody>
         </table>
       </div>

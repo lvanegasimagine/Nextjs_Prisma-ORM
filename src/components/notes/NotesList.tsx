@@ -1,6 +1,8 @@
 import { useNotes } from '@/context/NoteContext'
 import { Note } from '@prisma/client'
 import React from 'react'
+import { FaPencilAlt } from "react-icons/fa";
+import { FcEmptyTrash } from "react-icons/fc";
 
 interface INotesListProps {
     notes: Note[]
@@ -25,12 +27,19 @@ const NotesList = ({ notes, showForm, setShowForm }: INotesListProps) => {
                     <td className="px-6 py-4">
                         {note.content}
                     </td>
+                    <td className="px-6 py-4">
+                        {new Date(note.createdAt).toLocaleDateString()}
+                    </td>
                     <td className="px-6 py-4 text-right">
                         <button type='button' className="font-medium text-blue-600 dark:text-blue-500 hover:underline" onClick={() => {
                             setSelectedNote(note)
                             setShowForm(!showForm)
-                        }}>Edit</button>
-                        <button type='button' className="font-medium ml-6 text-red-600 dark:text-red-500 hover:underline" onClick={async () => { if (confirm("Are you sure you delete this note?")) await deleteNote(Number(note.id)) }}>Delete</button>
+                        }}>
+                            <FaPencilAlt className='text-xl' />
+                        </button>
+                        <button type='button' className="font-medium ml-6 text-red-600 dark:text-red-500 hover:underline" onClick={async () => { if (confirm("Are you sure you delete this note?")) await deleteNote(Number(note.id)) }}>
+                            <FcEmptyTrash className="text-2xl" />
+                        </button>
                     </td>
                 </tr>
             ))}
