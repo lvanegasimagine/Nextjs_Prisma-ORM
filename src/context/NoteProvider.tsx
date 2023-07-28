@@ -9,7 +9,9 @@ export const NotesProvider = ({ children }: IChildrenProps) => {
     const [selectedNote, setSelectedNote] = useState<Note | null>(null)
 
     async function loadNotes() {
-        const res = await fetch("/api/notes");
+        const res = await fetch("/api/notes", {
+            cache: 'no-store'
+        });
         const data = await res.json();
         setNotes(data);
     }
